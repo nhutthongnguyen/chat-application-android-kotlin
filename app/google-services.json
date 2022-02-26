@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "55741581807",
+    "project_id": "chatapplicationwithkotlin",
+    "storage_bucket": "chatapplicationwithkotlin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:55741581807:android:53b8446b671be4fe5a4e1a",
+        "android_client_info": {
+          "package_name": "com.example.androidkotlin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "55741581807-7f1labnvd9cdhm532s4ul69vjrqqjg30.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKmKnsj1PrHnj9R1J-rNSVSkhW_B8MsKc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "55741581807-7f1labnvd9cdhm532s4ul69vjrqqjg30.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
