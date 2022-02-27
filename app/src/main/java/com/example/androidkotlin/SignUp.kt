@@ -3,11 +3,12 @@ package com.example.androidkotlin
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class SignUp : AppCompatActivity() {
 
@@ -19,7 +20,9 @@ class SignUp : AppCompatActivity() {
     private lateinit var btnSignup: Button
     private lateinit var btnLogin: Button
 
+    // firebase service
     private lateinit var auth: FirebaseAuth
+    private lateinit var obRef: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,15 +47,17 @@ class SignUp : AppCompatActivity() {
         btnSignup.setOnClickListener {
             val email = edtEmail.text.toString()
             val password = edtPassword.text.toString()
+            val name = edtName.text.toString()
 
-            signUp(email, password)
+            signUp(name, email, password)
         }
     }
 
-    private fun signUp(email: String, password: String) {
+    private fun signUp(name: String, email: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+                    addUserToDatabase(name, email, auth.currentUser?.uid!!)
                     val intent = Intent(this@SignUp, Login::class.java)
                     startActivity(intent)
                 } else {
@@ -60,5 +65,10 @@ class SignUp : AppCompatActivity() {
                 }
             }
 
+    }
+
+    private fun addUserToDatabase(name: String, email: String, uid: String) {
+        obRef = FirebaseDatabase.getInstance().getReference()
+        obRef.child("user").child(uid).setValue(User(name, email, uid))
     }
 }
